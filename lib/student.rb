@@ -35,8 +35,8 @@ class Student
     self
   end
 
-  def create
-
+  def create(id = nil, name, grade)
+    self.initialize(id, name, grade).save
   end
 
   def self.create_table
