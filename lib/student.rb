@@ -16,7 +16,6 @@ class Student
 
   def already_saved
     !!@id
-    # binding.pry
   end
 
   def update
