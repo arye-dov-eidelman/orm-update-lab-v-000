@@ -35,12 +35,7 @@ class Student
       DB[:conn].execute(sql, name, grade)
       @id = DB[:conn].execute("SELECT last_insert_rowid()")[0][0]
     else
-      sql = <<-SQL
-        UPDATE students
-        SET name = ?, grade = ?
-        WHERE id = ?;
-      SQL
-      DB[:conn].execute(sql, name, grade, id)
+      self.update
     end
     self
   end
