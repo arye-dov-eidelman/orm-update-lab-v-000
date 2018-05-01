@@ -13,12 +13,12 @@ class Student
     @grade = grade
   end
 
-  def saved
+  def already_saved
     @id
   end
 
   def save
-    if !self.saved
+    if !self.already_saved
       sql = <<-SQL
       INSERT INTO students(name, grade) VALUES (?, ?);
       SQL
