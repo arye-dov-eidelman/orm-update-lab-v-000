@@ -18,6 +18,15 @@ class Student
     @id
   end
 
+  def update
+    sql = <<-SQL
+      UPDATE students
+      SET name = ?, grade = ?
+      WHERE id = ?;
+    SQL
+    DB[:conn].execute(sql, name, grade, id)
+  end
+
   def save
     if !self.already_saved
       sql = <<-SQL
