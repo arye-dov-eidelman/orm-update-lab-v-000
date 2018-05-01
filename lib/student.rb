@@ -5,7 +5,7 @@ require_relative "../config/environment.rb"
 
 class Student
   attr_accessor :name, :grade
-  attr_reader :id
+  attr_reader :id, :saved
 
   def initialize(id = nil, name, grade)
     @id = id
@@ -14,13 +14,12 @@ class Student
   end
 
   def save
-    if !@id
+    if !@saved
       sql = <<-SQL
       INSERT INTO students(name, grade) VALUES (?, ?);
       SQL
       DB[:conn].execute(sql, name, grade)
       @id = DB[:conn].execute("SELECT last_insert_rowid()")[0][0]
-
     else
       sql = <<-SQL
         UPDATE students
@@ -28,7 +27,7 @@ class Student
         WHERE id = ?;
       SQL
       DB[:conn].execute(sql, name, grade, id)
-
+      @saved = true
     end
     self
   end
