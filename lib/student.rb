@@ -51,6 +51,6 @@ class Student
   end
 
   def self.create(id = nil, name, grade)
-    self.initialize(id, name, grade).save
+    self.new(id, name, grade).save
   end
 end
