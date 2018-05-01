@@ -31,7 +31,6 @@ class Student
         WHERE id = ?;
       SQL
       DB[:conn].execute(sql, name, grade, id)
-      @saved = true
     end
     self
   end
