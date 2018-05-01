@@ -35,10 +35,6 @@ class Student
     self
   end
 
-  def create(id = nil, name, grade)
-    self.initialize(id, name, grade).save
-  end
-
   def self.create_table
     sql = <<-SQL
     CREATE TABLE students(
@@ -52,5 +48,9 @@ class Student
 
   def self.drop_table
     DB[:conn].execute("DROP TABLE IF EXISTS students")
+  end
+
+  def self.create(id = nil, name, grade)
+    self.initialize(id, name, grade).save
   end
 end
